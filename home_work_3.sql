@@ -156,11 +156,10 @@ SELECT * FROM staff ORDER BY salary;
 ** Отсортируйте по возрастанию поле “Зарплата” и 
 выведите 5 строк с наибольшей заработной платой (возможен подзапрос)
 */
-SELECT COUNT(*) as total_count FROM staff;
-SELECT *
-FROM staff
-ORDER BY salary ASC
-LIMIT (SELECT total_count FROM (SELECT COUNT(*) as total_count FROM staff) as count) - 5, (SELECT total_count FROM (SELECT COUNT(*) as total_count FROM staff) as count);
+SELECT * FROM (SELECT * FROM staff ORDER BY salary) t
+ORDER BY salary DESC
+LIMIT 5;
+
 /*
 3
 Выполните группировку всех сотрудников по специальности , 
